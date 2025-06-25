@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--=============== FLATICON ===============-->
+  <link rel="stylesheet"
+    href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css" />
+
+  <!--=============== SWIPER CSS ===============-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <title>Eco Farma</title>
+  <link rel="shortcut icon" href="assets/img/LOGO.ico" type="image/x-icon">
+  <style>
+    .btn-verde {
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 200px;
+    }
+
+    .btn-vermelho {
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    .btn-azul {
+      background: #2a7ae2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      width: 200px;
+    }
+
+    .carrinho-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      flex-wrap: nowrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carrinho-lista {
+      width: 750px;
+      max-height: 600px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+
+    .carrinho-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+
+    .carrinho-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .carrinho-item input[type="number"] {
+      width: 60px;
+      padding: 0.25rem;
+      text-align: center;
+    }
+
+    .carrinho-resumo {
+      width: 300px;
+      background-color: #f8f8f8;
+      padding: 1.5rem;
+      border-radius: 8px;
+      height: fit-content;
+      font-size: 0.95rem;
+    }
+
+
+    /* Fundo escuro transparente para modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 999;
+    }
+
+    /* Caixa do modal */
+    .modal-pontos {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 2rem;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal-pontos h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: #2e2e2e;
+    }
+
+    .modal-pontos p {
+      margin: 10px 0;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .modal-pontos input[type="number"] {
+      width: 80px;
+      padding: 6px;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .modal-pontos .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal-pontos .confirmar {
+      background-color: green;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-pontos .cancelar {
+      background-color: red;
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .overlay-finalizacao {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
+    }
+
+    .modal-finalizacao {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 1700px;
+      max-height: 1500px;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      display: none;
+      z-index: 1000;
+    }
+
+    .modal-header-finalizacao {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .btn-fechar-finalizacao {
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .modal-body-finalizacao {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .coluna-finalizacao {
+      flex: 1 1 30%;
+      min-width: 300px;
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .coluna-finalizacao 
+    select {
+      width: 100%;
+      padding: .5rem;
+      margin: .5rem 0;
+      background-color: #ffffff;
+    }
+
+    .coluna-finalizacao-input {
+      width: 100%;
+      padding: .5rem;
+      margin: .5rem 0;
+      background-color: #ffffff;
+    }
+
+    .lista-produtos {
+      list-style: none;
+      padding: 0;
+    }
+
+    .lista-produtos li {
+      display: flex;
+      justify-content: space-between;
+      margin: .5rem 0;
+    }
+
+    .row-duplo {
+      display: flex;
+      gap: .5rem;
+    }
+
+    .text-green {
+      color: green;
+    }
+
+    .btn-confirmar-finalizacao {
+      margin-top: 1rem;
+      background: #2a7ae2;
+      color: #fff;
+      border: none;
+      padding: .75rem;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .opcoes-entrega {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .opcoes-entrega label {
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!--=============== HEADER ===============-->
+  <header class="header">
+    <div class="header__top">
+      <div class="header__container container">
+        <div class="header__contact">
+          <span id="nome_info" style="display:none;"></span>
+          <span>Sua localização: Betim</span>
+        </div>
+        <p class="header__alert-news">
+          Aumente seus pontos entregando seus blisters nos pontos de coleta!
+        </p>
+        <a href="#" class="header__top-action" id="authLink"></a>
+
+      </div>
+    </div>
+
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__menu-top">
+          <a href="index.html" class="nav__menu-logo">
+            <img src="./assets/img/logo.png" alt="">
+          </a>
+          <div class="nav__close" id="nav-close">
+            <i class="fi fi-rs-cross-small"></i>
+          </div>
+        </div>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link active-link">Página Inicial</a>
+          </li>
+          <li class="nav__item">
+            <a href="shop.html" class="nav__link">Produtos</a>
+          </li>
+          <li class="nav__item" id="minhaContaItem" style="display: none;">
+            <a href="accounts.html" class="nav__link">Minha conta</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="coleta.html" class="nav__link">Pontos de Coleta</a>
+          </li>
+        </ul>
+        <div class="header__search">
+          <input type="text" placeholder="Do que você precisa?" class="form__input" id="campoBusca"
+            oninput="buscarProdutos()" autocomplete="off" />
+          <button class="search__btn">
+            <img src="assets/img/search.png" alt="search icon" />
+          </button>
+          <div id="sugestoesBusca" class="sugestoes__container"></div>
+        </div>
+      </div>
+      <div class="header__user-actions">
+        <a href="cart.html" class="header__action-btn" title="Cart">
+          <img src="assets/img/icon-cart.svg" alt="" />
+          <span class="count"></span>
+        </a>
+        <div class="header__action-btn nav__toggle" id="nav-toggle">
+          <img src="./assets//img/menu-burger.svg" alt="">
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="carrinho-container">
+    <div class="carrinho-lista" id="lista-carrinho"></div>
+
+    <div class="carrinho-resumo">
+      <h3>Resumo da Compra</h3>
+      <p id="total-produtos">Total: R$ 0,00</p>
+      <p style="color: green;"><strong>Frete: Grátis</strong></p>
+      <p id="desconto-cupom">Desconto: R$ 0,00</p>
+      <p><strong id="total-final">Total Final: R$ 0,00</strong></p>
+      <button onclick="mostrarModalPontos()" class="btn-verde">Visualizar meus cupons</button>
+      <button onclick="abrirModalFinalizacao()" class="btn-azul">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <!-- Overlay e modal -->
+  <div class="modal-overlay" id="overlayCupons" onclick="fecharModal()"></div>
+
+  <div class="modal-pontos" id="modalCupons">
+    <h3>Cupons - Pontos</h3>
+    <div style="border: 1px solid #ccc; padding: 10px; border-radius: 7px;">
+      <p style="text-align: justify;">Para cada blister ou medicamento vencido que tiver o descarta correto você recebe
+        1 ponto.
+      </p>
+      <br>
+      <p style="text-align: justify;">1 ponto = 0,25 centavos de desconto.
+      </p>
+      <p style="text-align: justify;">Obs.: Esses pontos não expiram.</p>
+    </div>
+    <p id="pontosTotais">Você tem <strong>5 pontos :)</strong> </p>
+    <p><strong>Quantos deseja usar?</strong></p>
+    <input type="number" id="pontosUsar" min="0" value="0" style="align-items: justify;border: 1px solid #ccc;" />
+    <div class="botoes">
+      <button class="confirmar" onclick="confirmarPontos()">Confirmar</button>
+      <button class="cancelar" onclick="fecharModal()">Cancelar</button>
+    </div>
+  </div>
+
+
+
+
+  <!--=============== FOOTER ===============-->
+  <footer class="footer container">
+    <div class="footer__container grid">
+      <div class="footer__content">
+        <a href="index.html" class="footer__logo">
+          <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
+        </a>
+        <h4 class="footer__subtitle">Fale Conosco!</h4>
+        <p class="footer__description">
+          <span>Endereço:</span> R. do Rosário, 1081 - Angola, Betim - MG, 32604-115
+        </p>
+        <p class="footer__description">
+          <span>Contato:</span> (31) 99986-5963
+        </p>
+        <p class="footer__description">
+          <span>Horário:</span> 10:00 - 18:00 | Seg - Sex
+        </p>
+        <div class="footer__social">
+          <h4 class="footer__subtitle">Nossas redes sociais:</h4>
+          <div class="footer__links flex">
+            <a href="#">
+              <img src="./assets/img/icon-facebook.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-twitter.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-instagram.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-pinterest.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-youtube.svg" alt="" class="footer__social-icon" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__content">
+        <h3 class="footer__title">FAQ</h3>
+        <ul class="footer__links">
+          <li><a href="sobre.html" class="footer__link">Sobre nós</a></li>
+          <li><a href="sobre.html" class="footer__link">Politica de Privacidade</a></li>
+          <li><a href="sobre.html" class="footer__link">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div class="footer__content">
+        <h3 class="footer__title">Minha conta</h3>
+        <ul class="footer__links">
+          <li><a href="accounts.html" class="footer__link">Ajuda</a></li>
+          <li><a href="accounts.html" class="footer__link">Pedidos</a></li>
+        </ul>
+      </div>
+      <div class="footer__content">
+        <h3 class="footer__title">Métodos de Pagamento</h3>
+        <img src="./assets/img/payment-method.png" alt="" class="payment__img" />
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="copyright">&copy; 2025 Ecofarma. Todos os direitos reservados.</p>
+      <span class="designer">Designer by Thiago </span>
+    </div>
+  </footer>
+
+
+  <div class="overlay-finalizacao" id="overlayFinalizacao" onclick="fecharModalFinalizacao()"></div>
+
+  <div class="modal-finalizacao" id="modalFinalizacao">
+    <div class="modal-header-finalizacao">
+      <h2>Finalizar Compra</h2>
+      <button class="btn-fechar-finalizacao" onclick="fecharModalFinalizacao()">×</button>
+    </div>
+    <div class="modal-body-finalizacao">
+      <!-- Coluna de entrega/pontos -->
+      <div class="coluna-finalizacao">
+        <h3>Opções de Entrega</h3>
+        <div class="opcoes-entrega">
+          <label>
+            <input type="radio" name="entrega" value="retirada" checked onchange="toggleEndereco(false)">
+            Retirar na loja
+          </label>
+          <label>
+            <input type="radio" name="entrega" value="domicilio" onchange="toggleEndereco(true)">
+            Entrega em domicílio
+          </label>
+        </div>
+
+        <div id="formEndereco" class="form-endereco" style="display:none;">
+          <h4>Endereço de Entrega</h4>
+          <input class="coluna-finalizacao-input" type="text" id="enderecoCampo" placeholder="Rua, Número">
+          <input class="coluna-finalizacao-input" type="text" id="cepCampo" placeholder="CEP">
+        </div>
+        <hr>
+      </div>
+
+
+      <!-- Coluna de pagamento -->
+      <div class="coluna-finalizacao">
+        <h3>Pagamento</h3>
+        <select id="formaPagamento">
+          <option>Cartão de Crédito</option>
+          <option>Cartão de Débito</option>
+          <option>Pix</option>
+        </select>
+        <input class="coluna-finalizacao-input" type="text" id="nomeCartao" placeholder="Nome no Cartão">
+        <input class="coluna-finalizacao-input" type="text" id="numeroCartao" placeholder="Número do Cartão">
+        <div class="row-duplo">
+          <input class="coluna-finalizacao-input" type="text" id="validadeCartao" placeholder="Validade (MM/AA)">
+          <input class="coluna-finalizacao-input" type="text" id="cvvCartao" placeholder="CVV">
+        </div>
+      </div>
+
+      <div class="coluna-finalizacao">
+        <h3>Resumo do Pedido</h3>
+        <ul class="lista-produtos" id="listaResumo"></ul>
+        <hr>
+        <p>Subtotal: <span id="subtotalResumo">R$0.00</span></p>
+        <p style="color: green;"> <strong>Frete: <span>Grátis</span></strong></p>
+        <p id="descontoFinal">Desconto: R$ 0,00</p>
+        <hr>
+        <p><strong>Total:</strong> <span id="totalFinal">R$0.00</span></p>
+        <button class="btn-confirmar-finalizacao" onclick="finalizarCompra()">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+
+  <button onclick="abrirModalFinalizacao()">Finalizar Compra</button>
+
+
+
+  <!--=============== SWIPER JS ===============-->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cart.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,508 @@
+<!-- 
+======================================
+
+FUNCIONANDO 100%
+
+====================================== 
+-->
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--=============== FLATICON ===============-->
+  <link rel="stylesheet"
+    href="https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-straight/css/uicons-regular-straight.css" />
+
+  <!--=============== SWIPER CSS ===============-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <title>Eco Farma</title>
+  <link rel="shortcut icon" href="assets/img/LOGO.ico" type="image/x-icon">
+  <style>
+    .products__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .product__item {
+      /* tamanho fixo do card */
+      width: 300px;
+      /* largura fixa */
+      height: 420px;
+      /* altura fixa para incluir imagem + infos */
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .product__banner {
+      flex-shrink: 0;
+      height: 250px;
+      /* altura fixa só para a imagem */
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      display: block;
+    }
+
+    .product__content {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pagination__link.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+
+    .avaliacoes {
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .avaliacoes__carrossel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 1700px;
+      margin: 0 auto 2rem;
+    }
+
+    .avaliacoes__wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      max-width: 1800px;
+    }
+
+    .avaliacoes__item {
+      width: 300px;
+      margin: 0 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 1rem;
+      box-sizing: border-box;
+      text-align: left;
+      flex-shrink: 0;
+    }
+
+    .avaliacoes__autor {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .avaliacoes__nota {
+      color: #ad8e10;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .avaliacoes__btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f0f0f0;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .avaliacoes__btn.prev {
+      left: -5px;
+      background-color: #e7e7e733;
+    }
+
+    .avaliacoes__btn.next {
+      right: -5px;
+      background-color: #e7e7e733;
+    }
+
+    @media screen and (max-width: 1000px) {
+      .avaliacoes__item {
+        width: 100%;
+        max-width: 90vw;
+        margin: 0 auto;
+      }
+
+
+
+      .avaliacoes__wrapper {
+        flex-wrap: nowrap;
+      }
+    }
+
+
+    /* .avaliacoes__btn.prev,
+    .avaliacoes__btn.next {
+      display: none;
+    } */
+
+
+    .avaliacoes__formulario {
+      max-width: 600px;
+      margin: auto;
+      text-align: left;
+    }
+
+    .avaliacoes__form-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .avaliacoes__input {
+      width: 100%;
+      height: 100px;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+
+    .blister-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 40px;
+  flex-wrap: wrap; /* se quiser responsivo */
+}
+
+.blister-left {
+  max-width: 40%;
+}
+
+.blister-left h2 {
+  color: green;
+  font-size: 2.5em;
+}
+
+.blister-left p {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.blister-left button {
+  background-color: #2e8b2e;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.blister-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+  </style>
+</head>
+
+<body>
+  <!--=============== HEADER ===============-->
+  <header class="header">
+    <div class="header__top">
+      <div class="header__container container">
+        <div class="header__contact">
+          <span id="nome_info" style="display:none;"></span>
+          <span>Sua localização: <span id="localizacaoUsuario">Betim</span></span>
+        </div>
+        <p class="header__alert-news">
+          Aumente seus pontos entregando seus blisters nos pontos de coleta!
+        </p>
+        <a href="#" class="header__top-action" id="authLink"></a>
+      </div>
+    </div>
+
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <img class="nav__logo-img" src="assets/img/logo.png" alt="website logo" />
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <div class="nav__menu-top">
+          <a href="index.html" class="nav__menu-logo">
+            <img src="./assets/img/logo.png" alt="">
+          </a>
+          <div class="nav__close" id="nav-close">
+            <i class="fi fi-rs-cross-small"></i>
+          </div>
+        </div>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link active-link">Página Inicial</a>
+          </li>
+          <li class="nav__item">
+            <a href="shop.html" class="nav__link">Produtos</a>
+          </li>
+          <li class="nav__item" id="minhaContaItem" style="display: none;">
+            <a href="accounts.html" class="nav__link">Minha conta</a>
+          </li>
+
+          <li class="nav__item">
+            <a href="coleta.html" class="nav__link">Pontos de Coleta</a>
+          </li>
+        </ul>
+        <div class="header__search">
+          <input type="text" placeholder="Do que você precisa?" class="form__input" id="campoBusca"
+            oninput="buscarProdutos()" autocomplete="off" />
+          <button class="search__btn">
+            <img src="assets/img/search.png" alt="search icon" />
+          </button>
+          <div id="sugestoesBusca" class="sugestoes__container"></div>
+        </div>
+
+      </div>
+      <div class="header__user-actions">
+        <a href="cart.html" class="header__action-btn" title="Cart">
+          <img src="assets/img/icon-cart.svg" alt="" />
+          <span class="count"></span>
+        </a>
+        <div class="header__action-btn nav__toggle" id="nav-toggle">
+          <img src="./assets//img/menu-burger.svg" alt="">
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!--=============== MAIN ===============-->
+  <main class="main">
+    <!--=============== HOME ===============-->
+    <!-- <section class="home section--lg">
+      <div class="home__container container grid" style="display: flex;">
+        <it<h1 class="home__title" style="margin-top: 100px;">
+              <span>Mais Economia</span>
+            </h1>
+            <p class="home__description">
+              Troque seu blister de remédio vazio por descontos!<br>
+
+            </p>
+            <a href="shop.html" class="btn">Comece a comprar!</a>
+        </div>
+        <img src="assets/img/home-img.png" class="home__img" alt="hats" style="display: flex; width: 1000px;" />
+      </div>
+    </section> -->
+
+    <section class="blister-container">
+  <div class="blister-left">
+    <h2>Mais Economia</h2>
+    <p>Troque seu blister de remédio vazio por descontos!</p>
+    <a href="shop.html" class="btn">Comece a comprar!</a>
+  </div>
+  <div class="blister-right">
+    <img src="assets/img/home-img.png" alt="EcoFarma Info" />
+  </div>
+</section>
+
+
+    <!--=============== CATEGORIES ===============-->
+    <section class="categories container section">
+      <h3 class="section__title"><span>Conheça nossas lojas parceiras:</span> </h3>
+      <div class="categories__container swiper">
+        <div class="swiper-wrapper">
+          <a href="shop.html" class="category__item swiper-slide" data-id="99">
+            <img src="assets/img/category-1.jpg" alt="" class="category__img" />
+            <h3 class="category__title">Mais Saúde</h3>
+          </a>
+          <a href="shop.html" class="category__item swiper-slide" data-id="100">
+            <img src="assets/img/category-2.jpg" alt="" class="category__img" />
+            <h3 class="category__title">Droga Raia</h3>
+          </a>
+          <a href="shop.html" class="category__item swiper-slide" data-id="101">
+            <img src="assets/img/category-4.jpg" alt="" class="category__img" />
+            <h3 class="category__title">Araújo</h3>
+          </a>
+          <a href="shop.html" class="category__item swiper-slide" data-id="104">
+            <img src="assets/img/category-3.jpg" alt="" class="category__img" />
+            <h3 class="category__title">Pague Menos</h3>
+          </a>
+          <a href="shop.html" class="category__item swiper-slide" data-id="102">
+            <img src="assets/img/category-5.jpg" alt="" class="category__img" />
+            <h3 class="category__title">Drogasil</h3>
+          </a>
+          <a href="shop.html" class="category__item swiper-slide" data-id="103">
+            <img src="assets/img/pacheco.png" alt="" class="category__img" />
+            <h3 class="category__title">Pacheco</h3>
+          </a>
+          <a href="shop.html" class="category__item swiper-slide" data-id="105">
+            <img src="assets/img/souzaaguiar.png" alt="" class="category__img" />
+            <h3 class="category__title">Souza Aguiar</h3>
+          </a>
+        </div>
+
+        <div class="swiper-button-prev">
+          <i class="fi fi-rs-angle-left"></i>
+        </div>
+        <div class="swiper-button-next">
+          <i class="fi fi-rs-angle-right"></i>
+        </div>
+      </div>
+    </section>
+
+    <!--=============== PRODUTOS ===============-->
+    <section class="products container section">
+      <div class="tab__btns">
+        <span class="tab__btn active-tab" data-target="#featured">Novidades</span>
+      </div>
+      <div class="products__container grid">
+        <div id="container-produtos" class="products__grid">
+          <!-- os cards serão adicionados aqui -->
+        </div>
+
+      </div>
+      <ul class="pagination" id="paginacao">
+        <!-- Botões dinâmicos -->
+      </ul>
+
+    </section>
+    <!--=============== AVALIAÇÕES ===============-->
+    <section class="avaliacoes container section">
+      <h3 class="section__title">O que dizem sobre nós</h3>
+      <div class="avaliacoes__carrossel">
+        <div id="avaliacoes-container" class="avaliacoes__wrapper">
+          <!-- Itens de avaliação via JS -->
+        </div>
+        <button class="avaliacoes__btn prev">&#10094;</button>
+        <button class="avaliacoes__btn next">&#10095;</button>
+      </div>
+
+      <div class="avaliacoes__formulario">
+        <h4 class="avaliacoes__form-title">Avalie a gente!</h4>
+        <textarea id="textoAvaliacao" class="avaliacoes__input" placeholder="Escreva sua avaliação..."></textarea>
+        <div class="avaliacoes__nota">
+          Nota:
+          <select id="notaAvaliacao">
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+          </select>
+        </div>
+        <button class="btn" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+      </div>
+    </section>
+
+    <!--=============== NEWSLETTER ===============-->
+    <section class="newsletter section home__newsletter">
+      <div class="newsletter__container container grid">
+        <h3 class="newsletter__title flex">
+          <img src="./assets/img/icon-email.svg" alt="" class="newsletter__icon" />
+          Receba nossas novidades assine nosso newsletter!
+        </h3>
+        <p class="newsletter__description">
+
+        </p>
+        <form action="" class="newsletter__form">
+          <input type="text" placeholder="Digite aqui seu e-mail" class="newsletter__input" />
+          <button type="submit" class="newsletter__btn">Confirmar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+
+  <!--=============== FOOTER ===============-->
+  <footer class="footer container">
+    <div class="footer__container grid">
+      <div class="footer__content">
+        <a href="index.html" class="footer__logo">
+          <img src="./assets/img/logo.png" alt="" class="footer__logo-img" />
+        </a>
+        <h4 class="footer__subtitle">Fale Conosco!</h4>
+        <p class="footer__description">
+          <span>Endereço:</span> R. do Rosário, 1081 - Angola, Betim - MG, 32604-115
+        </p>
+        <p class="footer__description">
+          <span>Contato:</span> (31) 99986-5963
+        </p>
+        <p class="footer__description">
+          <span>Horário:</span> 10:00 - 18:00 | Seg - Sex
+        </p>
+        <div class="footer__social">
+          <h4 class="footer__subtitle">Nossas redes sociais:</h4>
+          <div class="footer__links flex">
+            <a href="#">
+              <img src="./assets/img/icon-facebook.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-twitter.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-instagram.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-pinterest.svg" alt="" class="footer__social-icon" />
+            </a>
+            <a href="#">
+              <img src="./assets/img/icon-youtube.svg" alt="" class="footer__social-icon" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__content">
+        <h3 class="footer__title">FAQ</h3>
+        <ul class="footer__links">
+          <li><a href="sobre.html" class="footer__link">Sobre nós</a></li>
+          <li><a href="sobre.html" class="footer__link">Politica de Privacidade</a></li>
+          <li><a href="sobre.html" class="footer__link">Termos e Condições</a></li>
+        </ul>
+      </div>
+      <div class="footer__content">
+        <h3 class="footer__title">Minha conta</h3>
+        <ul class="footer__links">
+          <li><a href="accounts.html" class="footer__link">Ajuda</a></li>
+          <li><a href="accounts.html" class="footer__link">Pedidos</a></li>
+        </ul>
+      </div>
+      <div class="footer__content">
+        <h3 class="footer__title">Métodos de Pagamento</h3>
+        <img src="./assets/img/payment-method.png" alt="" class="payment__img" />
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="copyright">&copy; 2025 Ecofarma. Todos os direitos reservados.</p>
+      <span class="designer">Designer by Thiago </span>
+    </div>
+  </footer>
+
+  <!--=============== SWIPER JS ===============-->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/Scripts/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: Please cite this software using these metadata.
+title: Eco Farma
+authors:
+  - family-names: Marques Teixeira
+    given-names: Bianca
+  - family-names: de Paula Rodrigues
+    given-names: Camila
+  - family-names: Rodrigues Batista
+    given-names: Letícia
+  - family-names: Lacerda Santos Barbosa
+    given-names: Thiago
+  - family-names: Ribeiro da Silva
+    given-names: Walisson
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Soares Vieira de Vasconcelos
+    given-names: Amália
+
+keywords:
+  - sustentabilidade
+  - descarte de medicamentos
+  - logística verde
+  - entregas ecológicas
+  - farmácias
+  - reciclagem
+  - consumo consciente
+  - tecnologia sustentável
+
+repository-code: https://github.com/ICEI-PUC-Minas-PBE-ADS-SI/2025-1-p5-tias-projeto-eco-farma.git
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2024-08-01
