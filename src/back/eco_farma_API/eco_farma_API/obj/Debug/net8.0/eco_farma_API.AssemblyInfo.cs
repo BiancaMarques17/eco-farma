@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eco_farma_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80e27246cf08dbf1d7920b144059a4572a428c23")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee4951e41cd6ae76cca0118f5d6664622edd013c")]
 [assembly: System.Reflection.AssemblyProductAttribute("eco_farma_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eco_farma_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
