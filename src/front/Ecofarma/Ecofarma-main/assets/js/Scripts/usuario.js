@@ -73,7 +73,7 @@ async function fazerLogin() {
     };
 
     try {
-        const response = await fetch("http://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/usuario/login", {
+        const response = await fetch("https://ecofarmaapiapi.azure-api.net/api/usuario/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

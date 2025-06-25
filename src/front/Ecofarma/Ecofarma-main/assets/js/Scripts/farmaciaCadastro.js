@@ -98,7 +98,7 @@ async function salvarEstabelecimento() {
 
     try {
 
-        const response = await fetch("http://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/farmacia", {
+        const response = await fetch("https://ecofarmaapiapi.azure-api.net/api/farmacia", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
