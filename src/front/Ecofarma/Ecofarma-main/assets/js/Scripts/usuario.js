@@ -154,13 +154,13 @@ function abrirCadastro(tipo) {
     // Aqui você pode redirecionar ou abrir o formulário de cadastro correspondente
     switch (tipo) {
         case "cliente":
-            window.location.href = "/src/front/Ecofarma/Ecofarma-main/cadastro-cliente.html";
+            window.location.href = "https://eco-farma.vercel.app/login-register.html/cadastro-cliente.html";
             break;
         case "farmacia":
-            window.location.href = "/src/front/Ecofarma/Ecofarma-main/cadastro-entregador.html";
+            window.location.href = "https://eco-farma.vercel.app/login-register.html/cadastro-entregador.html";
             break;
         case "entregador":
-            window.location.href = "/src/front/Ecofarma/Ecofarma-main/cadastro-farmacia.html";
+            window.location.href = "https://eco-farma.vercel.app/login-register.html/cadastro-farmacia.html";
             break;
         default:
             alert("Papel não reconhecido.");
