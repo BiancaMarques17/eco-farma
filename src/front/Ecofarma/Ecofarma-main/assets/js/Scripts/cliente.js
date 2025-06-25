@@ -96,7 +96,7 @@ async function salvarCliente() {
 
     try {
 
-        const response = await fetch("http://localhost:5068/api/cliente", {
+        const response = await fetch("http://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/cliente", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
