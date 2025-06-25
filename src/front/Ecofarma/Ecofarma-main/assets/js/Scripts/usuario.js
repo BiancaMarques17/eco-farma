@@ -100,7 +100,7 @@ async function fazerLogin() {
             // Redireciona de acordo com o papel
             switch (usuario.papel.toLowerCase()) {
                 case "cliente":
-                    window.location.href = "/src/front/Ecofarma/Ecofarma-main/index.html";
+                    window.location.href = "https://eco-farma.vercel.app/index.html";
                     break;
                 case "farmacia":
                     window.location.href = "/farmacia/home.html";
