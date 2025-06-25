@@ -103,7 +103,7 @@ async function mostrarModalPontos() {
   if (!id) return alert("Usuário não encontrado.");
 
   try {
-    const response = await fetch(`https://ecofarmaapiapi.azure-api.net/api/cupom/cliente/${id}`);
+    const response = await fetch(`https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/cupom/cliente/${id}`);
     const cupons = await response.json();
 
     pontosUsuario = cupons.length; // ← define pontos globalmente
@@ -230,11 +230,11 @@ async function finalizarCompra() {
   const pontosUsados = parseInt(document.getElementById("pontosUsar")?.value || 0);
   if (pontosUsados > 0) {
     try {
-      const r = await fetch(`https://ecofarmaapiapi.azure-api.net/api/cupom/cliente/${id}`);
+      const r = await fetch(`https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/cupom/cliente/${id}`);
       const cupons = await r.json();
 
       for (let i = 0; i < pontosUsados && i < cupons.length; i++) {
-        await fetch(`https://ecofarmaapiapi.azure-api.net/api/cupom/${cupons[i].id_cupom}`, {
+        await fetch(`https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/cupom/${cupons[i].id_cupom}`, {
           method: "DELETE"
         });
       }

@@ -96,7 +96,7 @@ async function salvarEntregador() {
 
     try {
 
-        const response = await fetch("https://ecofarmaapiapi.azure-api.net/api/entregador", {
+        const response = await fetch("https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/entregador", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
