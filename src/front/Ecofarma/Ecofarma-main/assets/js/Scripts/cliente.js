@@ -107,7 +107,7 @@ async function salvarCliente() {
         //Mensagem não obrigatória
         if (response.ok) {
             alert("Cliente cadastrado com sucesso! Acesse a página de login para entrar no site");
-            window.location.href = "/src/front/Ecofarma/Ecofarma-main/login-register.html";
+            window.location.href = "https://eco-farma.vercel.app/login-register.html";
         } else {
             const erro = await response.text();
             alert("Erro ao cadastrar cliente:\n" + erro);
