@@ -156,10 +156,10 @@ function abrirCadastro(tipo) {
         case "cliente":
             window.location.href = "https://eco-farma.vercel.app/cadastro-cliente.html";
             break;
-        case "farmacia":
+        case "entregador":
             window.location.href = "https://eco-farma.vercel.app/cadastro-entregador.html";
             break;
-        case "entregador":
+        case "farmacia":
             window.location.href = "https://eco-farma.vercel.app/cadastro-farmacia.html";
             break;
         default:
