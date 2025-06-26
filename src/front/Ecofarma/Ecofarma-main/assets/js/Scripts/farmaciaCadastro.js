@@ -82,12 +82,9 @@ async function salvarEstabelecimento() {
 
     const data = {
         nome: document.getElementById("estabelecimento_nome").value,
-        nome: document.getElementById("adm_nome").value,
-      
-       
         email: document.getElementById("estabelecimento_email").value,
         endereco: document.getElementById("estabelecimento_endereco").value,
-        telefone: document.getElementById("adm_telefone").value,
+        telefone: parseInt(document.getElementById("adm_telefone").value),
         cpf: document.getElementById("adm_cpf").value,
         cnpj: document.getElementById("estabelecimento_cnpj").value,
         senha: document.getElementById("estabelecimento_senha").value,
