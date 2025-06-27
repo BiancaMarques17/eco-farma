@@ -56,3 +56,55 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
+
+
+
+async function carregarPedidos() {
+  const container = document.querySelector("#orders .tab__body");
+  container.innerHTML = "";
+
+  try {
+    const response = await fetch('https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/pedido/ultimos-tres');
+    if (!response.ok) throw new Error('Erro ao buscar pedidos');
+
+    const pedidos = await response.json();
+
+    if (pedidos.length === 0) {
+      container.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+      return;
+    }
+
+    // Somar o total geral
+    const totalGeral = pedidos.reduce((sum, p) => sum + p.qtd_produto * p.preco_produto, 0);
+
+    // Criar o container do pedido único
+    const div = document.createElement("div");
+    div.className = "pedido";
+    div.style = `
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+    `;
+
+    const icone = "🛍️"; // sacola
+    const data = new Date().toLocaleDateString("pt-BR"); // data atual
+
+    div.innerHTML = `
+      <h4 style="margin-bottom: 5px;">${icone} Pedidos Recentes</h4>
+      <p><strong>Data:</strong> ${data}</p>
+      <p><strong>Total:</strong> R$ ${totalGeral.toFixed(2)}</p>
+      <ul style="margin-top: 10px; padding-left: 20px;">
+        ${pedidos.map(p => `<li>${p.qtd_produto}x ${p.nome} - <strong>R$ ${(p.qtd_produto * p.preco_produto).toFixed(2)}</strong></li>`).join("")}
+      </ul>
+    `;
+
+    container.appendChild(div);
+  } catch (error) {
+    console.error(error);
+    container.innerHTML = "<p>Erro ao carregar pedidos.</p>";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", carregarPedidos);

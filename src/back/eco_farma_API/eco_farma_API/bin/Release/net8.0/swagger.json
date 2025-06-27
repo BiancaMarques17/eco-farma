@@ -1111,6 +1111,29 @@
         }
       }
     },
+    "/api/Pedido/ultimos-tres": {
+      "get": {
+        "tags": [
+          "Pedido"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pedido"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Produto": {
       "get": {
         "tags": [
