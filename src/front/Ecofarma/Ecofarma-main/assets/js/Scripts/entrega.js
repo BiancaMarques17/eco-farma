@@ -30,9 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (response.ok) alert("Senha atualizada com sucesso!");
   });
 
-   // Cupom
-  carregarCupons();
-
   // Tabs
   const tabs = document.querySelectorAll(".account__tab");
   const contents = document.querySelectorAll(".tab__content");
