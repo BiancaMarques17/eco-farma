@@ -93,8 +93,8 @@ async function carregarPedidos() {
         <p><strong>Data:</strong> ${new Date().toLocaleDateString("pt-BR")}</p>
         <p><strong>Total:</strong> R$ ${(pedido.qtd_produto * pedido.preco_produto).toFixed(2)}</p>
         <p><strong>Status:</strong> <span class="status">${status}</span></p>
-        <button class="btn-fazer-entrega" style="margin-right: 10px;">Fazer Entrega</button>
-        <button class="btn-concluir-entrega">Concluir Entrega</button>
+        <button class="btn-fazer-entrega" style="margin-right: 10px;background-color:blue;color:white;">Fazer Entrega</button>
+        <button class="btn-concluir-entrega" style="background-color:green;color:white;">Concluir Entrega</button>
       `;
 
       // Evento "Fazer Entrega"
@@ -145,7 +145,7 @@ function carregarEntregasConcluidas() {
   const ul = document.createElement("ul");
   entregasConcluidas.forEach(p => {
     const li = document.createElement("li");
-    li.innerHTML = `${p.qtd}x ${p.nome} - R$ ${(p.qtd * p.preco).toFixed(2)} - <strong>Status:</strong> ${p.status} (${p.data})`;
+    li.innerHTML = `Pedido - R$ ${(p.qtd * p.preco).toFixed(2)} - <strong>Status:</strong> ${p.status} (${p.data})`;
     ul.appendChild(li);
   });
   container.appendChild(ul);
