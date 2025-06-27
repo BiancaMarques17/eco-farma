@@ -179,135 +179,139 @@
     }
 
     .cadastro_produto {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #f9f9f9;
-        }
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
 
-        h1 {
-            text-align: center;
-        }
+    h1 {
+      text-align: center;
+    }
 
-        form {
-            max-width: 500px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        label {
-            display: block;
-            margin-top: 15px;
-        }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
 
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
-        .btn_produto_c {
-            margin-top: 20px;
-            width: 100%;
-            padding: 12px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+    .btn_produto_c {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
 
-        #preview {
-            margin-top: 10px;
-            max-width: 100%;
-            max-height: 200px;
-        }
+    #preview {
+      margin-top: 10px;
+      max-width: 100%;
+      max-height: 200px;
+    }
 
     /* -------------------- MELHORIAS VISUAIS MODERNAS -------------------- */
 
-/* Ícones nos inputs */
-.perfil-edicao__form input {
-  background-image: url('assets/img/icon-user.svg');
-  background-position: 10px center;
-  background-repeat: no-repeat;
-  background-size: 20px;
-  padding-left: 40px;
-}
+    /* Ícones nos inputs */
+    .perfil-edicao__form input {
+      background-image: url('assets/img/icon-user.svg');
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 20px;
+      padding-left: 40px;
+    }
 
-.perfil-edicao__input[type="email"] {
-  background-image: url('assets/img/icon-mail.svg');
-}
-.perfil-edicao__input[type="tel"] {
-  background-image: url('assets/img/icon-phone.svg');
-}
-.perfil-edicao__input[name="cpf"] {
-  background-image: url('assets/img/icon-id.svg');
-}
+    .perfil-edicao__input[type="email"] {
+      background-image: url('assets/img/icon-mail.svg');
+    }
 
-/* Animação suave no foco */
-.perfil-edicao__input:focus {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(82, 239, 111, 0.5);
-}
+    .perfil-edicao__input[type="tel"] {
+      background-image: url('assets/img/icon-phone.svg');
+    }
 
-/* Menu lateral fixo (desktop) */
-@media (min-width: 1024px) {
-  .account__tabs {
-    position: sticky;
-    top: 100px;
-    height: fit-content;
-    padding: 1rem;
-    border-radius: 12px;
-    background-color: #f8fdf7;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  }
+    .perfil-edicao__input[name="cpf"] {
+      background-image: url('assets/img/icon-id.svg');
+    }
 
-  .account__tab {
-    margin-bottom: 12px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.25s;
-  }
+    /* Animação suave no foco */
+    .perfil-edicao__input:focus {
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(82, 239, 111, 0.5);
+    }
 
-  .account__tab:hover,
-  .account__tab.active-tab {
-    background-color: #e9ffe5;
-    color: #0b8615;
-    font-weight: bold;
-  }
-}
+    /* Menu lateral fixo (desktop) */
+    @media (min-width: 1024px) {
+      .account__tabs {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+        padding: 1rem;
+        border-radius: 12px;
+        background-color: #f8fdf7;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      }
 
-/* Suavizar aparência de seções */
-.tab__body {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  margin-top: 10px;
-}
+      .account__tab {
+        margin-bottom: 12px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.25s;
+      }
 
-/* Botões */
-.perfil-edicao__btn, .btn, .btn--sm, .btn--md {
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+      .account__tab:hover,
+      .account__tab.active-tab {
+        background-color: #e9ffe5;
+        color: #0b8615;
+        font-weight: bold;
+      }
+    }
 
-/* Melhor responsividade para inputs */
-@media (max-width: 480px) {
-  .perfil-edicao__input {
-    font-size: 0.95rem;
-    padding-left: 35px;
-  }
-}
+    /* Suavizar aparência de seções */
+    .tab__body {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+      margin-top: 10px;
+    }
 
+    /* Botões */
+    .perfil-edicao__btn,
+    .btn,
+    .btn--sm,
+    .btn--md {
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Melhor responsividade para inputs */
+    @media (max-width: 480px) {
+      .perfil-edicao__input {
+        font-size: 0.95rem;
+        padding-left: 35px;
+      }
+    }
   </style>
 </head>
 
@@ -394,37 +398,40 @@
       <div class="accounts__container container grid">
         <div class="account__tabs">
           <p class="account__tab active-tab" data-target="#meus-cupom"><i class="fi fi-rs-ticket"></i> Cupons</p>
-          
-          
+
+
           <p class="account__tab" data-target="#update-profile">
             <i class="fi fi-rs-box"></i> Produtos
           </p>
-          
+
           <p class="account__tab" data-target="#change-password">
             <i class="fi fi-rs-settings-sliders"></i> Mudar Senha
           </p>
         </div>
         <!-- Substitua o conteúdo da <div class="tabs__content"> por este novo: -->
-<div class="tabs__content">
-  <!-- Aba: Meus Cupons -->
-  <div class="tab__content" id="meus-cupom">
-    <h3 class="tab__header">Gere cupons de desconto</h3>
-    <div class="tab__body">
-      <p class="tab__description">O código do cupom pode ser feito da maneira que você quiser, como a junção do código do produto e uma data ou somente um número aleatório</p>
-      <p class="tab__description">Digite o código do cupom:</p>
+        <div class="tabs__content">
+          <!-- Aba: Meus Cupons -->
+          <div class="tab__content" id="meus-cupom">
+            <h3 class="tab__header">Gere cupons de desconto</h3>
+            <div class="tab__body">
+              <p class="tab__description">O código do cupom pode ser feito da maneira que você quiser, como a junção do
+                código do produto e uma data ou somente um número aleatório</p>
+              <p class="tab__description">Digite o código do cupom:</p>
 
-      <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 15px;">
-        <input type="number" id="codigoCupom" placeholder="10102302501020" class="form__input" style="flex: 1; min-width: 200px;" />
-        <button class="btn btn--sm perfil-edicao__btn" style="padding: 10px 16px; flex-shrink: 0;" onclick="cadastrarCupom()">Cadastrar</button>
-      </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 15px;">
+                <input type="number" id="codigoCupom" placeholder="10102302501020" class="form__input"
+                  style="flex: 1; min-width: 200px;" />
+                <button class="btn btn--sm perfil-edicao__btn" style="padding: 10px 16px; flex-shrink: 0;"
+                  onclick="cadastrarCupom()">Cadastrar</button>
+              </div>
 
-      <hr style="margin: 1rem 0;" />
-      <h4>Cupons Cadastrados</h4>
-      <ul id="lista-cupom" class="cupom-lista"></ul>
-    </div>
-  </div>
+              <hr style="margin: 1rem 0;" />
+              <h4>Cupons Cadastrados</h4>
+              <ul id="lista-cupom" class="cupom-lista"></ul>
+            </div>
+          </div>
 
-  <!-- Aba: Pedidos 
+          <!-- Aba: Pedidos 
   <div class="tab__content" id="orders">
     <h3 class="tab__header">Meus pedidos</h3>
     <div class="tab__body">
@@ -432,54 +439,55 @@
     </div>
   </div>-->
 
-  <!-- Aba: Editar Perfil -->
-  <div class="tab__content" id="update-profile">
-    <h3 class="tab__header">Cadastrar Produto</h3>
-    <div class="tab__body perfil-edicao">
-<form class="cadastrocliente-container" id="produtoForm" enctype="multipart/form-data">
-        <label class="cadastroproduto-item" for="produto_nome">Nome:</label>
-        <input class="cadastroproduto-item" type="text" id="produto_nome" name="nome" required>
+          <!-- Aba: Editar Perfil -->
+          <div class="tab__content" id="update-profile">
+            <h3 class="tab__header">Cadastrar Produto</h3>
+            <div class="tab__body perfil-edicao">
+              <form class="cadastrocliente-container" id="produtoForm" enctype="multipart/form-data">
+                <label class="cadastroproduto-item" for="produto_nome">Nome:</label>
+                <input class="cadastroproduto-item" type="text" id="produto_nome" name="nome" required>
 
-        <label class="cadastroproduto-item" for="produto_categoria">Categoria:</label>
-        <select class="cadastroproduto-item" id="produto_categoria" name="categoria" required>
-            <option value="">Selecione</option>
-            <option value="remedios">Remédios</option>
-            <option value="higiene">Higiene</option>
-            <option value="alimento">Alimento</option>
-            <option value="infantil">Infantil</option>
-            <option value="pet">Pet</option>
-            <option value="analgésico">Analgésico</option>
-            <option value="antialergico">Antialérgico</option>
-            <option value="dor e febre">Dor e Febre</option>
-            <option value="doces">Doces</option>
-            <option value="skin care">Skin Care</option>
-            <option value="protetor solar">Protetor Solar</option>
-            <option value="maquiagem">Maquiagem</option>
-            <option value="unhas">Unhas</option>
-            <option value="tratamento">Tratamento</option>
-            <option value="fitness">Fitness</option>
-        </select>
+                <label class="cadastroproduto-item" for="produto_categoria">Categoria:</label>
+                <select class="cadastroproduto-item" id="produto_categoria" name="categoria" required>
+                  <option value="">Selecione</option>
+                  <option value="remedios">Remédios</option>
+                  <option value="higiene">Higiene</option>
+                  <option value="alimento">Alimento</option>
+                  <option value="infantil">Infantil</option>
+                  <option value="pet">Pet</option>
+                  <option value="analgésico">Analgésico</option>
+                  <option value="antialergico">Antialérgico</option>
+                  <option value="dor e febre">Dor e Febre</option>
+                  <option value="doces">Doces</option>
+                  <option value="skin care">Skin Care</option>
+                  <option value="protetor solar">Protetor Solar</option>
+                  <option value="maquiagem">Maquiagem</option>
+                  <option value="unhas">Unhas</option>
+                  <option value="tratamento">Tratamento</option>
+                  <option value="fitness">Fitness</option>
+                </select>
 
-        <label class="cadastroproduto-item" for="produto_preco">Preço:</label>
-        <input class="cadastroproduto-item" type="number" step="0.01" id="produto_preco" name="preco" required>
+                <label class="cadastroproduto-item" for="produto_preco">Preço:</label>
+                <input class="cadastroproduto-item" type="number" step="0.01" id="produto_preco" name="preco" required>
 
-        <label class="cadastroproduto-item" for="produto_estoque">Estoque:</label>
-        <input class="cadastroproduto-item" type="number" id="produto_estoque" name="estoque" required>
+                <label class="cadastroproduto-item" for="produto_estoque">Estoque:</label>
+                <input class="cadastroproduto-item" type="number" id="produto_estoque" name="estoque" required>
 
-        <label for="produto_descricao">Descrição:</label>
-        <textarea id="produto_descricao" name="descricao" rows="4"></textarea>
+                <label for="produto_descricao">Descrição:</label>
+                <textarea id="produto_descricao" name="descricao" rows="4"></textarea>
 
-        <label class="cadastroproduto-item" for="produto_anexo">Imagem (.jpg ou .png):</label>
-        <input class="cadastroproduto-item" type="file" id="produto_anexo" name="imagem" accept="image/png, image/jpeg,image/webp" required>
-        <img id="preview" src="#" alt="Pré-visualização" style="display:none;" />
+                <label class="cadastroproduto-item" for="produto_anexo">Imagem (.jpg ou .png):</label>
+                <input class="cadastroproduto-item" type="file" id="produto_anexo" name="imagem"
+                  accept="image/png, image/jpeg,image/webp" required>
+                <img id="preview" src="#" alt="Pré-visualização" style="display:none;" />
 
-        <button class="btn_produto_c" type="button" onclick="salvarProduto()">Cadastrar</button>
-    </form>
-    </div>
-  </div>
+                <button class="btn_produto_c" type="button" onclick="salvarProduto()">Cadastrar</button>
+              </form>
+            </div>
+          </div>
 
-  <!-- Aba: Endereço -->
-  <!-- Aba: Endereço 
+          <!-- Aba: Endereço -->
+          <!-- Aba: Endereço 
 <div class="tab__content" id="address">
   <h3 class="tab__header">Meus endereços</h3>
   <div class="tab__body">
@@ -501,25 +509,25 @@
 </div>-->
 
 
-  <!-- Aba: Mudar Senha -->
-  <div class="tab__content" id="change-password">
-    <h3 class="tab__header">Mudar senha</h3>
-    <div class="tab__body perfil-edicao">
-      <form class="perfil-edicao__form">
-        <label class="perfil-edicao__label">Senha atual</label>
-        <input type="password" class="perfil-edicao__input" />
+          <!-- Aba: Mudar Senha -->
+          <div class="tab__content" id="change-password">
+            <h3 class="tab__header">Mudar senha</h3>
+            <div class="tab__body perfil-edicao">
+              <form class="perfil-edicao__form">
+                <label class="perfil-edicao__label">Senha atual</label>
+                <input type="password" class="perfil-edicao__input" />
 
-        <label class="perfil-edicao__label">Nova senha</label>
-        <input type="password" class="perfil-edicao__input" />
+                <label class="perfil-edicao__label">Nova senha</label>
+                <input type="password" class="perfil-edicao__input" />
 
-        <label class="perfil-edicao__label">Confirmar nova senha</label>
-        <input type="password" class="perfil-edicao__input" />
+                <label class="perfil-edicao__label">Confirmar nova senha</label>
+                <input type="password" class="perfil-edicao__input" />
 
-        <button class="perfil-edicao__btn" type="submit">Salvar</button>
-      </form>
-    </div>
-  </div>
-</div>
+                <button class="perfil-edicao__btn" type="submit">Salvar</button>
+              </form>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
@@ -594,25 +602,25 @@
 
     <!--=============== MAIN JS ===============-->
 
-<script>
-        const imagemInput = document.getElementById('produto_anexo');
-        const preview = document.getElementById('preview');
+    <script>
+      const imagemInput = document.getElementById('produto_anexo');
+      const preview = document.getElementById('preview');
 
-        imagemInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+      imagemInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
     </script>
     <script src="assets/js/Scripts/produto.js"></script>
     <script src="assets/js/Scripts/farmacia.js"></script>
-    <script src="assets/js/Scripts/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 
