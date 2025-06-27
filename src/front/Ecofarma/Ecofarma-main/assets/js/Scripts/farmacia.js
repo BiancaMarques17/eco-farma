@@ -30,6 +30,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (response.ok) alert("Senha atualizada com sucesso!");
   });
 
+   // Cupom
+  carregarCupons();
+
+  // Tabs
+  const tabs = document.querySelectorAll(".account__tab");
+  const contents = document.querySelectorAll(".tab__content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active-tab"));
+      contents.forEach(c => c.style.display = "none");
+
+      tab.classList.add("active-tab");
+      const targetId = tab.getAttribute("data-target");
+      const targetContent = document.querySelector(targetId);
+      if (targetContent) targetContent.style.display = "block";
+    });
+  });
+
+  const activeTab = document.querySelector(".account__tab.active-tab");
+  if (activeTab) {
+    const targetId = activeTab.getAttribute("data-target");
+    contents.forEach(c => c.style.display = "none");
+    const activeContent = document.querySelector(targetId);
+    if (activeContent) activeContent.style.display = "block";
+  }
 
 });
 
