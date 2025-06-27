@@ -1,62 +1,61 @@
-import api from '../services/Api.js';
+document.addEventListener("DOMContentLoaded", async () => {
+  // === Dados do usuário ===
+  const API_URL = "https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/entregador";
+  const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const idEntregador = usuarioLogado?.dadosPapel?.id_entregador;
+
+  if (!usuarioLogado || !usuarioLogado.dadosPapel) return;
+
+  const dados = usuarioLogado.dadosPapel;
 
 
-async function carregarEntregas() {
-    try {
-        const entregas = await api.entrega.getAll();
-        return entregas;
-    } catch (error) {
-        console.error('Erro ao carregar entregas:', error);
-        throw error;
-    }
-}
+  // Atualizar senha
+  document.querySelector("#change-password form")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const senhaAtual = e.target[0].value;
+    const novaSenha = e.target[1].value;
+    const confirmar = e.target[2].value;
 
+    if (novaSenha !== confirmar) return alert("As senhas não coincidem");
 
-async function buscarEntregaPorId(id) {
-    try {
-        const entrega = await api.entrega.getById(id);
-        return entrega;
-    } catch (error) {
-        console.error(`Erro ao buscar entrega com ID ${id}:`, error);
-        throw error;
-    }
-}
+    const entregador = await fetch(`${API_URL}/${idEntregador}`).then(res => res.json());
+    if (entregador.senha !== senhaAtual) return alert("Senha atual incorreta!");
 
+    entregador.senha = novaSenha;
+    const response = await fetch(`${API_URL}/${idEntregador}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entregador),
+    });
+    if (response.ok) alert("Senha atualizada com sucesso!");
+  });
 
-async function criarEntrega(entregaData) {
-    try {
-        const novaEntrega = await api.entrega.create(entregaData);
-        return novaEntrega;
-    } catch (error) {
-        console.error('Erro ao criar entrega:', error);
-        throw error;
-    }
-}
+   // Cupom
+  carregarCupons();
 
+  // Tabs
+  const tabs = document.querySelectorAll(".account__tab");
+  const contents = document.querySelectorAll(".tab__content");
 
-async function atualizarEntrega(id, entregaData) {
-    try {
-        await api.entrega.update(id, entregaData);
-        return true;
-    } catch (error) {
-        console.error(`Erro ao atualizar entrega com ID ${id}:`, error);
-        throw error;
-    }
-}
-async function excluirEntrega(id) {
-    try {
-        await api.entrega.delete(id);
-        return true;
-    } catch (error) {
-        console.error(`Erro ao excluir entrega com ID ${id}:`, error);
-        throw error;
-    }
-}
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active-tab"));
+      contents.forEach(c => c.style.display = "none");
 
-export default {
-    carregarEntregas,
-    buscarEntregaPorId,
-    criarEntrega,
-    atualizarEntrega,
-    excluirEntrega
-};
+      tab.classList.add("active-tab");
+      const targetId = tab.getAttribute("data-target");
+      const targetContent = document.querySelector(targetId);
+      if (targetContent) targetContent.style.display = "block";
+    });
+  });
+
+  const activeTab = document.querySelector(".account__tab.active-tab");
+  if (activeTab) {
+    const targetId = activeTab.getAttribute("data-target");
+    contents.forEach(c => c.style.display = "none");
+    const activeContent = document.querySelector(targetId);
+    if (activeContent) activeContent.style.display = "block";
+  }
+
+});
+
