@@ -1,61 +1,34 @@
-import api from '../services/Api.js';
+document.addEventListener("DOMContentLoaded", async () => {
+  // === Dados do usuário ===
+  const API_URL = "https://ecofarma-f4ake0gkhwapfmh3.canadacentral-01.azurewebsites.net/api/farmacia";
+  const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const idFarmacia = usuarioLogado?.dadosPapel?.id_farmacia;
+
+  if (!usuarioLogado || !usuarioLogado.dadosPapel) return;
+
+  const dados = usuarioLogado.dadosPapel;
 
 
-async function carregarFarmacias() {
-    try {
-        const farmacias = await api.farmacia.getAll();
-        return farmacias;
-    } catch (error) {
-        console.error('Erro ao carregar farmácias:', error);
-        throw error;
-    }
-}
+  // Atualizar senha
+  document.querySelector("#change-password form")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const senhaAtual = e.target[0].value;
+    const novaSenha = e.target[1].value;
+    const confirmar = e.target[2].value;
 
-async function buscarFarmaciaPorId(id) {
-    try {
-        const farmacia = await api.farmacia.getById(id);
-        return farmacia;
-    } catch (error) {
-        console.error(`Erro ao buscar farmácia com ID ${id}:`, error);
-        throw error;
-    }
-}
+    if (novaSenha !== confirmar) return alert("As senhas não coincidem");
 
+    const farmacia = await fetch(`${API_URL}/${idFarmacia}`).then(res => res.json());
+    if (farmacia.senha !== senhaAtual) return alert("Senha atual incorreta!");
 
-async function criarFarmacia(farmaciaData) {
-    try {
-        const novaFarmacia = await api.farmacia.create(farmaciaData);
-        return novaFarmacia;
-    } catch (error) {
-        console.error('Erro ao criar farmácia:', error);
-        throw error;
-    }
-}
+    farmacia.senha = novaSenha;
+    const response = await fetch(`${API_URL}/${idFarmacia}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(farmacia),
+    });
+    if (response.ok) alert("Senha atualizada com sucesso!");
+  });
 
 
-async function atualizarFarmacia(id, farmaciaData) {
-    try {
-        await api.farmacia.update(id, farmaciaData);
-        return true;
-    } catch (error) {
-        console.error(`Erro ao atualizar farmácia com ID ${id}:`, error);
-        throw error;
-    }
-}
-async function excluirFarmacia(id) {
-    try {
-        await api.farmacia.delete(id);
-        return true;
-    } catch (error) {
-        console.error(`Erro ao excluir farmácia com ID ${id}:`, error);
-        throw error;
-    }
-}
-
-export default {
-    carregarFarmacias,
-    buscarFarmaciaPorId,
-    criarFarmacia,
-    atualizarFarmacia,
-    excluirFarmacia
-};
+});

@@ -78,7 +78,8 @@ async function salvarProduto() {
     }
 
     // Pega o ID da farmácia do localStorage (ou valor fixo se não existir)
-    const idFarmacia = localStorage.getItem("id_farmacia") || "100";
+    const dados = localStorage.getItem("usuarioLogado")
+    const idFarmacia = dados.dadosPapel.id_farmacia;
     formData.append("id_farmacia", idFarmacia);
 
     try {
