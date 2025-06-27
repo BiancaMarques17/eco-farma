@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 });
 
-
-
+// Variável global para armazenar pedidos concluídos
+const entregasConcluidas = [];
 
 async function carregarPedidos() {
   const container = document.querySelector("#orders .tab__body");
@@ -74,37 +74,85 @@ async function carregarPedidos() {
       return;
     }
 
-    // Somar o total geral
-    const totalGeral = pedidos.reduce((sum, p) => sum + p.qtd_produto * p.preco_produto, 0);
+    pedidos.forEach(pedido => {
+      const div = document.createElement("div");
+      div.className = "pedido";
+      div.style = `
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        position: relative;
+      `;
 
-    // Criar o container do pedido único
-    const div = document.createElement("div");
-    div.className = "pedido";
-    div.style = `
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      background-color: #f9f9f9;
-    `;
+      let status = "Aguardando entrega";
 
-    const icone = "🛍️"; // sacola
-    const data = new Date().toLocaleDateString("pt-BR"); // data atual
+      div.innerHTML = `
+        <h4 style="margin-bottom: 5px;">🛍️ Pedido</h4>
+        <p><strong>Data:</strong> ${new Date().toLocaleDateString("pt-BR")}</p>
+        <p><strong>Total:</strong> R$ ${(pedido.qtd_produto * pedido.preco_produto).toFixed(2)}</p>
+        <p><strong>Status:</strong> <span class="status">${status}</span></p>
+        <button class="btn-fazer-entrega" style="margin-right: 10px;">Fazer Entrega</button>
+        <button class="btn-concluir-entrega">Concluir Entrega</button>
+      `;
 
-    div.innerHTML = `
-      <h4 style="margin-bottom: 5px;">${icone} Pedidos Recentes</h4>
-      <p><strong>Data:</strong> ${data}</p>
-      <p><strong>Total:</strong> R$ ${totalGeral.toFixed(2)}</p>
-      <ul style="margin-top: 10px; padding-left: 20px;">
-        ${pedidos.map(p => `<li>${p.qtd_produto}x ${p.nome} - <strong>R$ ${(p.qtd_produto * p.preco_produto).toFixed(2)}</strong></li>`).join("")}
-      </ul>
-    `;
+      // Evento "Fazer Entrega"
+      div.querySelector('.btn-fazer-entrega').addEventListener('click', () => {
+        div.style.backgroundColor = "#d0f0c0"; // verde claro
+        div.querySelector('.status').innerText = "Fazendo entrega";
+      });
 
-    container.appendChild(div);
+      // Evento "Concluir Entrega"
+      div.querySelector('.btn-concluir-entrega').addEventListener('click', () => {
+        // Atualiza o status visual
+        div.querySelector('.status').innerText = "Concluído";
+        // Muda a cor
+        div.style.backgroundColor = "#e0e0e0"; // cor cinza claro
+        // Adiciona na lista de entregas concluídas
+        const pedidoConcluido = {
+          nome: pedido.nome,
+          qtd: pedido.qtd_produto,
+          preco: pedido.preco_produto,
+          data: new Date().toLocaleDateString("pt-BR"),
+          status: "Concluído"
+        };
+        entregasConcluidas.push(pedidoConcluido);
+        // Navega para a aba "Entregas concluídas"
+        document.querySelector('[data-target="#orders2"]').click();
+        // Atualiza a lista de entregas concluídas
+        carregarEntregasConcluidas();
+      });
+
+      container.appendChild(div);
+    });
   } catch (error) {
     console.error(error);
     container.innerHTML = "<p>Erro ao carregar pedidos.</p>";
   }
 }
 
-document.addEventListener("DOMContentLoaded", carregarPedidos);
+function carregarEntregasConcluidas() {
+  const container = document.querySelector("#orders2 .tab__body");
+  container.innerHTML = "";
+
+  if (entregasConcluidas.length === 0) {
+    container.innerHTML = "<p>Nenhuma entrega concluída.</p>";
+    return;
+  }
+
+  // Criar lista de entregas concluídas
+  const ul = document.createElement("ul");
+  entregasConcluidas.forEach(p => {
+    const li = document.createElement("li");
+    li.innerHTML = `${p.qtd}x ${p.nome} - R$ ${(p.qtd * p.preco).toFixed(2)} - <strong>Status:</strong> ${p.status} (${p.data})`;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+
+// Carregar pedidos ao abrir a página
+document.addEventListener("DOMContentLoaded", () => {
+  carregarPedidos();
+});
+
