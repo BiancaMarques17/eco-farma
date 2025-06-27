@@ -103,10 +103,10 @@ async function fazerLogin() {
                     window.location.href = "https://eco-farma.vercel.app/index.html";
                     break;
                 case "farmacia":
-                    window.location.href = "/farmacia/home.html";
+                    window.location.href = "https://eco-farma.vercel.app/accounts-farmacia.html";
                     break;
                 case "entregador":
-                    window.location.href = "/entregador/home.html";
+                    window.location.href = "https://eco-farma.vercel.app/accounts-entregador.html";
                     break;
                 default:
                     alert("Papel não reconhecido.");

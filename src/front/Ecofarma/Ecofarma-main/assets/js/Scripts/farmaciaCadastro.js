@@ -91,7 +91,7 @@ async function salvarEstabelecimento() {
         cpf: document.getElementById("adm_cpf").value,
         cnpj: document.getElementById("estabelecimento_cnpj").value,
         senha: document.getElementById("estabelecimento_senha").value,
-        cep: parseInt(document.getElementById("estabelecimento_cep").value),
+        cep: document.getElementById("estabelecimento_cep").value,
         numero: parseInt(document.getElementById("estabelecimento_numero").value),
         //id_cliente: parseInt(document.getElementById("id_cliente").value)
     };
@@ -109,7 +109,7 @@ async function salvarEstabelecimento() {
         //Mensagem não obrigatória
         if (response.ok) {
             alert("Estabelecimento cadastrado com sucesso! Acesse a página de login para entrar no site");
-            window.location.href = "/src/front/Ecofarma/Ecofarma-main/login-register.html";
+            window.location.href = "https://eco-farma.vercel.app/login-register.html";
         } else {
             const erro = await response.text();
             alert("Erro ao cadastrar Estabelecimento:\n" + erro);

@@ -89,7 +89,7 @@ async function salvarEntregador() {
         telefone: document.getElementById("entregador_telefone").value,
         cpf: document.getElementById("entregador_cpf").value,
         senha: document.getElementById("entregador_senha").value,
-        cep: parseInt(document.getElementById("entregador_cep").value),
+        cep: document.getElementById("entregador_cep").value,
         numero: parseInt(document.getElementById("entregador_numero").value),
         //id_cliente: parseInt(document.getElementById("id_cliente").value)
     };
@@ -107,7 +107,7 @@ async function salvarEntregador() {
         //Mensagem não obrigatória
         if (response.ok) {
             alert("Entregador cadastrado com sucesso! Acesse a página de login para entrar no site");
-            window.location.href = "/src/front/Ecofarma/Ecofarma-main/login-register.html";
+            window.location.href = "https://eco-farma.vercel.app/login-register.html";
         } else {
             const erro = await response.text();
             alert("Erro ao cadastrar Entregador:\n" + erro);

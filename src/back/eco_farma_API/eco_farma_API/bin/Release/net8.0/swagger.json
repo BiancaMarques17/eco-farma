@@ -1784,8 +1784,7 @@
           "type": "string"
         },
         "cep": {
-          "format": "int32",
-          "type": "integer"
+          "type": "string"
         },
         "numero": {
           "format": "int32",
@@ -1858,8 +1857,7 @@
           "type": "string"
         },
         "cep": {
-          "format": "int32",
-          "type": "integer"
+          "type": "string"
         },
         "numero": {
           "format": "int32",
@@ -1888,12 +1886,10 @@
           "type": "string"
         },
         "telefone": {
-          "format": "int32",
-          "type": "integer"
+          "type": "string"
         },
         "cep": {
-          "format": "int32",
-          "type": "integer"
+          "type": "string"
         },
         "endereco": {
           "type": "string"
